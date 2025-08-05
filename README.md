@@ -11,7 +11,6 @@
 - 📄 Supports PDF, EPUB, Markdown, and plain text formats  
 - 🔖 Paginated reading with page numbers and progress tracking  
 - ⌨️ Keyboard navigation: next/previous page, jump to start/end, search  
-- 📚 Bookmarks for saving your place  
 - 🎨 Light and dark terminal themes  
 - 💾 Save and restore last-read page automatically  
 - ⚡ Fast and lightweight — works in any terminal  
@@ -37,7 +36,5 @@ sudo make install
 | `p` | Previous page         |
 | `g` | Go to start of book   |
 | `G` | Go to end of book     |
-| `/` | Search text           |
-| `b` | Bookmark current page |
 | `q` | Quit                  |
 
