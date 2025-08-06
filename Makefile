@@ -1,8 +1,8 @@
 OBJDIR = obj
 CC = gcc
-CFLAGS = -Wall -Wextra -O2
+CFLAGS = -Wall -Wextra -O2 -Iinclude
 LDFLAGS = -lncurses
-SRC = $(wildcard src/*.c)
+SRC = $(wildcard src/*.c) file_formats/txt.c
 OBJ = $(patsubst src/%.c,$(OBJDIR)/%.o,$(SRC))
 TARGET = pagr
 
