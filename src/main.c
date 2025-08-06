@@ -1,3 +1,4 @@
+#include "../include/txt.h"
 #include <ncurses.h>
 #include <panel.h>
 #include <stdlib.h>
@@ -19,11 +20,9 @@ int main(int argc, char *argv[]) {
     exit(0);
   }
 
-  initscr();
-  printw("Pagr!");
-  refresh();
-  getch();
-  endwin();
+  if (strcmp(file_type, "txt") == 0) {
+    open_txt_file(argv[1]);
+  }
 
   return 0;
 }
@@ -34,9 +33,6 @@ bool usage_check(int num_of_args) {
   }
   return true;
 }
-
-#include <stdio.h>
-#include <string.h>
 
 char *file_format(char *file) {
 
