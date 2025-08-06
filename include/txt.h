@@ -1,0 +1,1 @@
+void open_txt_file(char *file_name);
