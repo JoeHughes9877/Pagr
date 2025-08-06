@@ -1,4 +1,8 @@
+#include <ncurses.h>
 #include <stdio.h>
+
+void reading_loop(char *contents);
+
 void open_txt_file(char *file_name) {
   FILE *fptr;
 
@@ -8,7 +12,18 @@ void open_txt_file(char *file_name) {
 
   fgets(myString, 100, fptr);
 
-  printf("%s", myString);
+  reading_loop(myString);
+}
 
-  fclose(fptr);
+void reading_loop(char *contents) {
+  initscr();
+  cbreak();
+  noecho();
+  keypad(stdscr, TRUE);
+  mvprintw(1, 1, "%s", contents);
+
+  refresh();
+  getch();
+
+  endwin();
 }
