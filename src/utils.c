@@ -6,7 +6,8 @@ WINDOW *create_window() {
   noecho();
   keypad(stdscr, TRUE);
 
-  WINDOW *mywin = newwin(0, 0, 0, 0);
+  WINDOW *mywin = newwin(60, 95, 2, 10);
+  box(mywin, 0, 0);
 
   return mywin;
 }
