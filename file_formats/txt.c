@@ -23,7 +23,7 @@ void reading_loop(char *contents, char *file_name) {
   WINDOW *win = create_window();
   refresh();
 
-  mvwprintw(win, 1, 1, "%s", contents);
+  mvwprintw(win, 1, 2, "%s", contents);
   wrefresh(win);
 
   int ch;
@@ -31,7 +31,7 @@ void reading_loop(char *contents, char *file_name) {
     ch = getch();
 
     if (ch == 'n') {
-      wclear(win);
+      clear();
       open_txt_file(file_name);
     } else if (ch == 'c') {
       delwin(win);
