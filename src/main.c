@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
   }
 
   if (strcmp(file_type, "txt") == 0) {
-    open_txt_file(argv[1]);
+    txt_reading_loop(argv[1]);
   }
 
   return 0;
