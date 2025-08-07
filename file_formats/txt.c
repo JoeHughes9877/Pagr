@@ -31,10 +31,9 @@ void txt_reading_loop(const char *file_name) {
   while (1) {
     int ch = wgetch(page);
     if (ch == 'n') {
-      printw("You pressed n!\n");
+      wclear(page);
+      line_num = 0;
+      break;
     }
   }
-
-  wrefresh(page);
-  fclose(fp);
 }
