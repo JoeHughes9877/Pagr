@@ -32,7 +32,7 @@ void txt_reading_loop(const char *file_name) {
   int rows, cols;
   getmaxyx(page, rows, cols);
 
-  char line[cols];
+  char line[cols - 1];
   int line_num = 0;
 
   while (line_num < rows && fgets(line, sizeof(line), fp) != NULL) {
