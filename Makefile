@@ -1,9 +1,9 @@
 OBJDIR = obj
 CC = gcc
 CFLAGS = -Wall -Wextra -O2 -Iinclude
-LDFLAGS = -lncurses
+LDFLAGS = -lncursesw
 SRC = $(wildcard src/*.c) file_formats/txt.c
-OBJ = $(patsubst src/%.c,$(OBJDIR)/%.o,$(SRC))
+OBJ = $(patsubst src/%.c,$(OBJDIR)/%.o,$(filter src/%.c,$(SRC))) $(patsubst file_formats/%.c,$(OBJDIR)/%.o,$(filter file_formats/%.c,$(SRC)))
 TARGET = pagr
 
 .PHONY: all clean
@@ -14,6 +14,9 @@ $(TARGET): $(OBJ)
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
 $(OBJDIR)/%.o: src/%.c | $(OBJDIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJDIR)/%.o: file_formats/%.c | $(OBJDIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJDIR):
