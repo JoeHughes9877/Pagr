@@ -1,3 +1,5 @@
+#define _XOPEN_SOURCE_EXTENDED 1
+
 #include "../include/utils.h"
 #include <locale.h>
 #include <ncurses.h>
@@ -37,13 +39,13 @@ void txt_reading_loop(const char *file_name) {
   wchar_t line[cols - 1];
   int line_num = 0;
 
-  while (line_num < rows - 2 && fgetws(line, sizeof(line), fp) != NULL) {
+  while (line_num < rows - 2 && fgetws(line, cols, fp) != NULL) {
     size_t len = wcslen(line);
     if (len > 0 && line[len - 1] == '\n') {
       line[len - 1] = '\0';
     }
 
-    int waddnstr(WINDOW * win, int y, int x, const wchar_t *wstr);
+    mvwaddnwstr(page, line_num + 1, 1, line, cols - 1);
     line_num++;
   }
 
