@@ -17,14 +17,7 @@ FILE *read_line(char *file_name) {
     exit(1);
   }
 
-  int result = fwide(fptr, 1);
-
-  if (result > 0) {
-    printf("tiddies");
-    return fptr;
-  } else if (result < 0) {
-    printf("no tiddies");
-  }
+  fwide(fptr, 1);
   return fptr;
 }
 
@@ -45,7 +38,7 @@ void txt_reading_loop(const char *file_name) {
       line[len - 1] = '\0';
     }
 
-    mvwaddnwstr(page, line_num + 1, 1, line, cols - 1);
+    mvwaddnwstr(page, line_num + 1, 1, line, cols - 2);
     line_num++;
   }
 
