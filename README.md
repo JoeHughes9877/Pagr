@@ -5,6 +5,11 @@
 **Pagr** is a minimalist terminal-based eBook reader designed to provide a smooth, Kindle-like reading experience directly in your command line. It supports multiple formats including PDF, EPUB, Markdown, and plain text, with pagination, keyboard navigation, bookmarks, and more.
 
 ---
+# Motive
+
+I Like reading ebooks but sometimes the formatting on kindle can get weird when they are "borrowed" of the internet. So i made this to make it so i could read ebooks on my PC and laptop easier.
+
+---
 
 ## Features
 
