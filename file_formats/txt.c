@@ -3,34 +3,23 @@
 #include <stdlib.h>
 #include <string.h>
 
-char *read_line(char *file_name, int win_width) {
+FILE *read_line(char *file_name) {
   FILE *fptr;
-
-  char *buffer = malloc(win_width + 1);
   if ((fptr = fopen(file_name, "r")) == NULL) {
     printf("Error! opening file");
     exit(1);
   }
 
-  size_t line = fwrite(buffer, sizeof(char), win_width, fptr);
-  buffer[line] = '\0';
-
-  fclose(fptr);
-
-  return buffer;
+  return fptr;
 }
 
 void txt_reading_loop(const char *file_name) {
-  FILE *fp = fopen(file_name, "r");
-  if (!fp) {
-    perror("Failed to open file");
-    return;
-  }
-
   WINDOW *page = create_window();
 
   int rows, cols;
   getmaxyx(page, rows, cols);
+
+  FILE *fp = read_line((char *)file_name);
 
   char line[cols - 1];
   int line_num = 0;
@@ -52,12 +41,13 @@ void txt_reading_loop(const char *file_name) {
       if (ch == 'n') {
       } else if (ch == 'q') {
         delwin(page);
-        endwin();
         fclose(fp);
+        endwin();
         exit(0);
       }
     }
 
+    fclose(fp);
     wrefresh(page);
   }
 }
