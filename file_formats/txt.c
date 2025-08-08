@@ -3,15 +3,29 @@
 #include <stdlib.h>
 #include <string.h>
 
-FILE *read_file(char *file_name) {
+char *read_line(char *file_name, int win_width) {
+  FILE *fptr;
+
+  char *buffer = malloc(win_width + 1);
+  if ((fptr = fopen(file_name, "r")) == NULL) {
+    printf("Error! opening file");
+    exit(1);
+  }
+
+  size_t line = fwrite(buffer, sizeof(char), win_width, fptr);
+  buffer[line] = '\0';
+
+  fclose(fptr);
+
+  return buffer;
+}
+
+void txt_reading_loop(const char *file_name) {
   FILE *fp = fopen(file_name, "r");
   if (!fp) {
     perror("Failed to open file");
+    return;
   }
-  return fp;
-}
-
-void txt_reading_loop(const char *file_name, FILE **fp) {
 
   WINDOW *page = create_window();
 
@@ -21,22 +35,29 @@ void txt_reading_loop(const char *file_name, FILE **fp) {
   char line[cols - 1];
   int line_num = 0;
 
-  while (line_num < rows - 2 && fgets(line, sizeof(line), *fp) != NULL) {
-    size_t len = strlen(line);
-    if (len > 0 && line[len - 1] == '\n') {
-      line[len - 1] = '\0';
+  while (line_num < rows && fgets(line, sizeof(line), fp) != NULL) {
+    while (line_num < rows - 2 && fgets(line, sizeof(line), fp) != NULL) {
+      size_t len = strlen(line);
+      if (len > 0 && line[len - 1] == '\n') {
+        line[len - 1] = '\0';
+      }
+
+      mvwprintw(page, line_num + 1, 1, "%s", line);
+      line_num++;
     }
 
-    mvwprintw(page, line_num + 1, 1, "%s", line);
-    line_num++;
-  }
-
-  while (1) {
-    int ch = wgetch(page);
-    if (ch == 'n') {
-      wclear(page);
-      wrefresh(page);
-      fclose(*fp);
+    wrefresh(page);
+    while (1) {
+      int ch = wgetch(page);
+      if (ch == 'n') {
+      } else if (ch == 'q') {
+        delwin(page);
+        endwin();
+        fclose(fp);
+        exit(0);
+      }
     }
+
+    wrefresh(page);
   }
 }
