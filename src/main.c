@@ -9,7 +9,7 @@ char *file_format(char *file);
 
 const int plain_txt_arr_len = 15;
 
-const char *plain_text[] = {
+char *plain_text[] = {
     ".txt",  // Standard text file
     ".md",   // Markdown
     ".csv",  // Comma-separated values
@@ -59,17 +59,9 @@ bool usage_check(int num_of_args) {
 
 char *file_format(char *file) {
 
-  // NULL is needed to determin length of the arrray during runtime
-  char *accepted_file_formats[] = {"txt", "pdf", NULL};
-  int arr_len = 0;
-
-  while (accepted_file_formats[arr_len] != NULL) {
-    arr_len++;
-  }
-
-  for (int i = 0; i < arr_len; i++) {
-    if (strstr(file, accepted_file_formats[i]) != NULL) {
-      return accepted_file_formats[i];
+  for (int i = 0; i < plain_txt_arr_len; i++) {
+    if (strstr(file, plain_text[i]) != NULL) {
+      return plain_text[i];
     }
   }
   return NULL;
