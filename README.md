@@ -1,9 +1,6 @@
 # Pagr
-
-<img width="600" height="800" alt="image" src="https://github.com/user-attachments/assets/652b2e0c-9bbd-4cad-83a2-1027f5c1ed76" />
-
-
-**Pagr** is a minimalist terminal-based eBook reader designed to provide a smooth, Kindle-like reading experience directly in your command line. It supports multiple formats including PDF, EPUB, Markdown, and plain text, with pagination, keyboard navigation, bookmarks, and more.
+<img src="https://github.com/user-attachments/assets/652b2e0c-9bbd-4cad-83a2-1027f5c1ed76" alt="Pagr Screenshot" width="400" />
+Pagr is a minimalist terminal-based eBook reader designed to provide a smooth, Kindle-like reading experience directly in your command line. It supports multiple formats including PDF, EPUB, Markdown, and plain text, with pagination, keyboard navigation, bookmarks, and more.
 
 ---
 # Motive
