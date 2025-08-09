@@ -7,6 +7,8 @@
 bool usage_check(int argc);
 char *file_format(char *file);
 
+const int plain_txt_arr_len = 15;
+
 const char *plain_text[] = {
     ".txt",  // Standard text file
     ".md",   // Markdown
@@ -39,8 +41,10 @@ int main(int argc, char *argv[]) {
     exit(0);
   }
 
-  if (strcmp(file_type, "txt") == 0) {
-    txt_reading_loop(argv[1]);
+  for (int i = 0; i < 15; i++) {
+    if (strstr(file_type, plain_text[i]) == 0) {
+      plain_txt_reading_loop(argv[1]);
+    }
   }
 
   return 0;
