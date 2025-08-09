@@ -28,7 +28,7 @@ I Like reading ebooks but sometimes the formatting on kindle can get weird when 
 Build and install Pagr using `make`:
 
 ```bash
-git clone https://github.com/yourusername/pagr.git
+git clone JoeHughes9877/Pagr
 cd pagr
 make
 sudo make install
