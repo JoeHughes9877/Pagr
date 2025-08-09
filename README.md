@@ -8,7 +8,7 @@ Currently only supports plaintext with plans for more in the future
 ---
 # Motive
 
-I Like reading ebooks but sometimes the formatting on kindle can get weird when they are "borrowed" of the internet. So i made this to make it so i could read ebooks on my PC and laptop easier.
+I like reading ebooks, but sometimes the formatting on Kindle can get weird when they are "borrowed" off the internet. So I made this to make it so I could read ebooks on my PC and laptop easier.
 
 ---
 
