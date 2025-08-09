@@ -7,9 +7,9 @@
 bool usage_check(int argc);
 char *file_format(char *file);
 
-const int plain_txt_arr_len = 15;
+const int arr_len = 15;
 
-char *plain_text[] = {
+char *accepted_file_formats[] = {
     ".txt",  // Standard text file
     ".md",   // Markdown
     ".csv",  // Comma-separated values
@@ -42,7 +42,7 @@ int main(int argc, char *argv[]) {
   }
 
   for (int i = 0; i < 15; i++) {
-    if (strstr(file_type, plain_text[i]) == 0) {
+    if (strstr(file_type, accepted_file_formats[i]) == 0) {
       plain_txt_reading_loop(argv[1]);
     }
   }
@@ -59,9 +59,9 @@ bool usage_check(int num_of_args) {
 
 char *file_format(char *file) {
 
-  for (int i = 0; i < plain_txt_arr_len; i++) {
-    if (strstr(file, plain_text[i]) != NULL) {
-      return plain_text[i];
+  for (int i = 0; i < arr_len; i++) {
+    if (strstr(file, accepted_file_formats[i]) != NULL) {
+      return accepted_file_formats[i];
     }
   }
   return NULL;
