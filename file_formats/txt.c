@@ -1,27 +1,14 @@
 #define _XOPEN_SOURCE_EXTENDED 1
 
 #include "../include/utils.h"
-#include <locale.h>
 #include <ncurses.h>
 #include <stdlib.h>
 #include <string.h>
 #include <wchar.h>
 
-FILE *read_line(char *file_name) {
-  setlocale(LC_ALL, "");
-
-  FILE *fptr;
-  if ((fptr = fopen(file_name, "r")) == NULL) {
-    printf("Error! opening file");
-    exit(1);
-  }
-
-  fwide(fptr, 1);
-  return fptr;
-}
-
 void txt_reading_loop(const char *file_name) {
   FILE *fp = read_line((char *)file_name);
+  int page_num = 0;
 
   while (1) {
     WINDOW *page = create_window();
@@ -41,12 +28,14 @@ void txt_reading_loop(const char *file_name) {
       mvwaddnwstr(page, line_num + 1, 1, line, cols - 2);
       line_num++;
     }
+    mvwprintw(page, line_num + 1, 1, "Page Number: %d", page_num);
 
     wrefresh(page);
     while (1) {
       int ch = wgetch(page);
       if (ch == 'n') {
         delwin(page);
+        page_num++;
         break;
       } else if (ch == 'q') {
         delwin(page);
