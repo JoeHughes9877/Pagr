@@ -7,6 +7,25 @@
 bool usage_check(int argc);
 char *file_format(char *file);
 
+const char *plain_text[] = {
+    ".txt",  // Standard text file
+    ".md",   // Markdown
+    ".csv",  // Comma-separated values
+    ".log",  // Log files
+    ".ini",  // Configuration files
+    ".cfg",  // Alternate config
+    ".json", // JSON (technically structured text)
+    ".xml",  // XML (structured text)
+    ".yaml", // YAML
+    ".yml",  // YAML alternative extension
+    ".rtf",  // Rich Text Format
+    ".tex",  // LaTeX source
+    ".html", // HTML source
+    ".htm",  // HTML alternative
+    ".srt",  // SubRip subtitles
+    ".asc"   // ASCII armored text
+};
+
 int main(int argc, char *argv[]) {
 
   if (usage_check(argc) == false) {
