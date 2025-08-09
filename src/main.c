@@ -1,4 +1,4 @@
-#include "../include/txt.h"
+#include "../include/plain_txt.h"
 #include <ncurses.h>
 #include <panel.h>
 #include <stdlib.h>
