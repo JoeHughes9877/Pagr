@@ -6,7 +6,7 @@
 #include <string.h>
 #include <wchar.h>
 
-void txt_reading_loop(const char *file_name) {
+void plain_txt_reading_loop(const char *file_name) {
   FILE *fp = read_line((char *)file_name);
   int page_num = 0;
 
