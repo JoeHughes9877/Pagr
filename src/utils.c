@@ -1,4 +1,9 @@
+#define _XOPEN_SOURCE_EXTENDED 1
+
+#include <locale.h>
 #include <ncurses.h>
+#include <stdlib.h>
+#include <wchar.h>
 
 WINDOW *create_window() {
   initscr();
@@ -13,4 +18,17 @@ WINDOW *create_window() {
   box(mywin, 0, 0);
 
   return mywin;
+}
+
+FILE *read_line(char *file_name) {
+  setlocale(LC_ALL, "");
+
+  FILE *fptr;
+  if ((fptr = fopen(file_name, "r")) == NULL) {
+    printf("Error! opening file");
+    exit(1);
+  }
+
+  fwide(fptr, 1);
+  return fptr;
 }
