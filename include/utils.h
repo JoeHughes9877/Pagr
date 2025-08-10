@@ -2,4 +2,4 @@
 
 WINDOW *create_window();
 char *controller(WINDOW *win);
-FILE *read_line(char *file_name);
+FILE *open_plain_txt_file(char *file_name);
