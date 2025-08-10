@@ -20,7 +20,7 @@ WINDOW *create_window() {
   return mywin;
 }
 
-FILE *read_line(char *file_name) {
+FILE *open_plain_txt_file(char *file_name) {
   setlocale(LC_ALL, "");
 
   FILE *fptr;
