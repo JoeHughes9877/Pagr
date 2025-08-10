@@ -1,4 +1,1 @@
-#include <stddef.h>
-#include <stdio.h>
-
 void plain_txt_reading_loop(const char *file_name);
