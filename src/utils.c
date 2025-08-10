@@ -32,3 +32,7 @@ FILE *open_plain_txt_file(char *file_name) {
   fwide(fptr, 1);
   return fptr;
 }
+
+void controller() {
+  // TODO
+}
