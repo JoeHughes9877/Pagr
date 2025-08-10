@@ -39,7 +39,7 @@ sudo make install
 | Key | Action                |
 |-----|-----------------------|
 | `n` | Next page             |
-| `p` | Previous page         |
+| `b` | Previous page         |
 | `g` | Go to start of book   |
 | `G` | Go to end of book     |
 | `q` | Quit                  |
