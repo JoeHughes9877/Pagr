@@ -36,3 +36,10 @@ FILE *open_plain_txt_file(char *file_name) {
 void controller() {
   // TODO
 }
+
+void close_application(WINDOW *page, FILE *fp) {
+  delwin(page);
+  fclose(fp);
+  endwin();
+  exit(0);
+}
