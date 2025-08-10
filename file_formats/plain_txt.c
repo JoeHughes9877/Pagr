@@ -20,11 +20,6 @@ void plain_txt_reading_loop(const char *file_name) {
     int line_num = 0;
 
     while (line_num < rows - 2 && fgetws(line, cols, fp) != NULL) {
-      size_t len = wcslen(line);
-      if (len > 0 && line[len - 1] == '\n') {
-        line[len - 1] = '\0';
-      }
-
       mvwaddnwstr(page, line_num + 1, 1, line, cols - 2);
       line_num++;
     }
@@ -42,6 +37,10 @@ void plain_txt_reading_loop(const char *file_name) {
         fclose(fp);
         endwin();
         exit(0);
+      } else if (ch == 'b' && page_num > 0) {
+        delwin(page);
+        page_num--;
+        break;
       }
     }
   }
