@@ -1,11 +1,13 @@
 #define _XOPEN_SOURCE_EXTENDED 1
+#include "../include/themes.h"
 #include <locale.h>
 #include <ncurses.h>
 #include <stdlib.h>
 
-WINDOW *create_window() {
+WINDOW *create_window(char *theme) {
   initscr();
   start_color();
+  choose_theme(theme);
   cbreak();
   noecho();
   keypad(stdscr, TRUE);
@@ -14,7 +16,8 @@ WINDOW *create_window() {
   getmaxyx(stdscr, y, x);
 
   WINDOW *mywin = newwin(y - 2, x - 16, 2, 10);
-  init_pair(1, COLOR_RED, COLOR_BLACK);
+  wattron(mywin, COLOR_PAIR(1));
+  wrefresh(mywin);
   return mywin;
 }
 
