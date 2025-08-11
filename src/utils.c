@@ -1,5 +1,4 @@
 #define _XOPEN_SOURCE_EXTENDED 1
-
 #include <locale.h>
 #include <ncurses.h>
 #include <stdlib.h>
@@ -30,10 +29,6 @@ FILE *open_plain_txt_file(char *file_name) {
 
   fwide(fptr, 1);
   return fptr;
-}
-
-void controller() {
-  // TODO
 }
 
 void close_application(WINDOW *page, FILE *fp) {
