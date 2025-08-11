@@ -1,17 +1,18 @@
 #define _XOPEN_SOURCE_EXTENDED 1
 
+#include "../include/plain_txt.h"
 #include "../include/utils.h"
 #include <ncurses.h>
 #include <stdio.h>
 #include <string.h>
 #include <wchar.h>
 
+void controller(WINDOW *page, FILE *fp, int page_eof);
+
 // arbatary number, i think no books will pass.
-#define MAX_PAGES 10000
 long page_offsets[MAX_PAGES];
 int current_page = 0;
 int total_pages = 0;
-int eof = 0;
 
 void plain_txt_reading_loop(const char *file_name) {
   FILE *fp = open_plain_txt_file((char *)file_name);
@@ -44,21 +45,27 @@ void plain_txt_reading_loop(const char *file_name) {
     }
 
     wrefresh(page);
+    controller(page, fp, page_eof);
+  }
+}
 
-    while (1) {
-      int ch = wgetch(page);
-      if (ch == 'n' && !page_eof) {
-        delwin(page);
-        current_page++;
-        break;
-      } else if (ch == 'b' && current_page > 0) {
-        delwin(page);
-        current_page--;
-        fseek(fp, page_offsets[current_page], SEEK_SET);
-        break;
-      } else if (ch == 'q') {
-        close_application(page, fp);
-      }
+void controller(WINDOW *page, FILE *fp, int page_eof) {
+
+  while (1) {
+    int ch = wgetch(page);
+    if (ch == 'n' && !page_eof) {
+      delwin(page);
+      current_page++;
+      break;
+    } else if (ch == 'b' && current_page > 0) {
+      delwin(page);
+      current_page--;
+      fseek(fp, page_offsets[current_page], SEEK_SET);
+      break;
+    } else if (ch == 'q') {
+      close_application(page, fp);
+    } else {
+      continue;
     }
   }
 }
