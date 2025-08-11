@@ -6,21 +6,13 @@
 #include <string.h>
 
 bool usage_check(int argc);
-char *file_format(char *file);
+int file_format(char *file);
 
 const int arr_len = 16;
 
-typedef struct {
-  char *file_name;
-  bool isArchive;
-} FileFormat;
-
-FileFormat acceptedFormats[] = {
-    {".txt", false},  {".md", false},  {".csv", false},  {".log", false},
-    {".ini", false},  {".cfg", false}, {".json", false}, {".xml", false},
-    {".yaml", false}, {".yml", false}, {".rtf", false},  {".tex", false},
-    {".html", false}, {".htm", false}, {".srt", false},  {".asc", false},
-    {".epub", true},  {".EPUB", true}, {".docx", true},  {".zip", true}};
+const char *acceptedFormats[] = {"txt",  "md",  "csv", "log",  "json", "xml",
+                                 "yaml", "yml", "ini", "conf", "cfg",  "rtf",
+                                 "tex",  "asc", "bat", "sh",   "htm"};
 
 int main(int argc, char *argv[]) {
 
@@ -29,15 +21,17 @@ int main(int argc, char *argv[]) {
     exit(0);
   }
 
-  char *file_to_open = file_format(argv[1]);
-  if (file_to_open != NULL) {
+  char *file_to_open;
+  if (file_format(argv[1]) == 1) {
+    file_to_open = argv[1];
   } else {
     printf("Invalid file type.\n");
     exit(0);
   }
 
-  for (int i = 0; i < 19; i++) {
-    if (strstr(file_to_open, &acceptedFormats->file_name[i]) == 0) {
+  for (int i = 0; i < arr_len; i++) {
+    if (strstr(file_to_open, acceptedFormats[i]) == 0) {
+      printf("file to open: %s", file_to_open);
       plain_txt_reading_loop(file_to_open);
     }
   }
@@ -52,23 +46,11 @@ bool usage_check(int num_of_args) {
   return true;
 }
 
-char *file_format(char *file) {
+int file_format(char *file) {
   for (int i = 0; i < arr_len; i++) {
-    if (strstr(file, &acceptedFormats->file_name[i]) != NULL) {
-      if (acceptedFormats[i].isArchive) {
-        if (unzip_file(file) == 0) {
-          // just for epub files, this changes the file from .epub to .xml
-          char *ext = strstr(file, ".epub");
-          if (ext != NULL) {
-            strcpy(ext, ".xml");
-            return file;
-          }
-        } else {
-          printf("\nerror extracting file.");
-        }
-      }
-      return file;
+    if (strstr(file, acceptedFormats[i]) != NULL) {
+      return 1;
     }
   }
-  return NULL;
+  return 0;
 }

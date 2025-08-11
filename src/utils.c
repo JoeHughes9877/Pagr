@@ -37,11 +37,3 @@ void close_application(WINDOW *page, FILE *fp) {
   endwin();
   exit(0);
 }
-
-int unzip_file(char *file_name) {
-  char cmd[256]; // arbatary number chosen for command length
-
-  snprintf(cmd, sizeof(cmd), "unzip -o %s", file_name);
-  int result = system(cmd);
-  return result;
-}
