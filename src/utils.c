@@ -2,7 +2,6 @@
 #include <locale.h>
 #include <ncurses.h>
 #include <stdlib.h>
-#include <wchar.h>
 
 WINDOW *create_window() {
   initscr();
