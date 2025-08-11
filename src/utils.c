@@ -20,7 +20,6 @@ WINDOW *create_window() {
 
 FILE *open_plain_txt_file(char *file_name) {
   setlocale(LC_ALL, "");
-  printf("\nfile name: %s\n", file_name);
 
   FILE *fptr;
   if ((fptr = fopen(file_name, "r")) == NULL) {
