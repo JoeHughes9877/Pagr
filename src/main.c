@@ -45,7 +45,6 @@ void read_book(char *file_to_open) {
 }
 
 int main(int argc, char *argv[]) {
-
   usage_check(argc);
 
   char *file_to_open;
