@@ -14,13 +14,13 @@ long page_offsets[MAX_PAGES];
 int current_page = 0;
 int total_pages = 0;
 
-void plain_txt_reading_loop(const char *file_name) {
+void plain_txt_reading_loop(const char *file_name, char *theme) {
   FILE *fp = open_plain_txt_file((char *)file_name);
 
   while (1) {
     page_offsets[current_page] = ftell(fp);
 
-    WINDOW *page = create_window();
+    WINDOW *page = create_window(theme);
     int rows, cols;
     getmaxyx(page, rows, cols);
 
