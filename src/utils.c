@@ -24,6 +24,8 @@ WINDOW *create_window(char *theme) {
 FILE *open_plain_txt_file(char *file_name) {
   setlocale(LC_ALL, "");
 
+  printf("\file name: %s\n", file_name);
+
   FILE *fptr;
   if ((fptr = fopen(file_name, "r")) == NULL) {
     printf("Error! opening file\n");
