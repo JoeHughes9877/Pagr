@@ -29,16 +29,16 @@ int main(int argc, char *argv[]) {
     exit(0);
   }
 
-  char *file_type = file_format(argv[1]);
-  if (file_type != NULL) {
+  char *file_to_open = file_format(argv[1]);
+  if (file_to_open != NULL) {
   } else {
     printf("Invalid file type.\n");
     exit(0);
   }
 
-  for (int i = 0; i < 15; i++) {
-    if (strstr(file_type, &acceptedFormats->file_name[i]) == 0) {
-      plain_txt_reading_loop(argv[1]);
+  for (int i = 0; i < 19; i++) {
+    if (strstr(file_to_open, &acceptedFormats->file_name[i]) == 0) {
+      plain_txt_reading_loop(file_to_open);
     }
   }
 
@@ -53,21 +53,21 @@ bool usage_check(int num_of_args) {
 }
 
 char *file_format(char *file) {
-
   for (int i = 0; i < arr_len; i++) {
     if (strstr(file, &acceptedFormats->file_name[i]) != NULL) {
       if (acceptedFormats[i].isArchive) {
-        unzip_file(file);
-
-        // just for epub files, this changes the file from .epub to .xml
-        char *ext = strstr(file, ".epub");
-        if (ext != NULL) {
-          strcpy(file, ".xml");
-          return file;
+        if (unzip_file(file) == 0) {
+          // just for epub files, this changes the file from .epub to .xml
+          char *ext = strstr(file, ".epub");
+          if (ext != NULL) {
+            strcpy(ext, ".xml");
+            return file;
+          }
+        } else {
+          printf("\nerror extracting file.");
         }
       }
-
-      return &acceptedFormats->file_name[i];
+      return file;
     }
   }
   return NULL;
