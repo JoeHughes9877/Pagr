@@ -32,16 +32,17 @@ void plain_txt_reading_loop(const char *file_name) {
       line_num++;
     }
 
-    mvwprintw(page, line_num + 1, 1, "Page Number: %d", current_page);
+    // reformat page border
+    box(page, 0, 0);
+
+    mvwprintw(page, rows - 1, 1, "Page Number: %d", current_page);
     wrefresh(page);
 
     if (feof(fp)) {
       page_eof = 1;
-      mvwprintw(page, line_num + 2, 1, "The End.'");
+      mvwprintw(page, line_num + 2, 1, "The End.");
     }
 
-    // reformat page border
-    box(page, 0, 0);
     wrefresh(page);
 
     while (1) {
