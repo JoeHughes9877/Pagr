@@ -8,7 +8,6 @@
 void usage_check(int argc);
 bool is_valid_extension(char *file);
 void open_file(char *file_to_open);
-;
 
 const char *acceptedFormats[] = {"txt",  "md",  "csv", "log",  "json", "xml",
                                  "yaml", "yml", "ini", "conf", "cfg",  "rtf",
@@ -17,10 +16,10 @@ static const size_t arr_len =
     sizeof(acceptedFormats) / sizeof(acceptedFormats[0]);
 
 void usage_check(int num_of_args) {
-  if (num_of_args == 2) {
+  if (num_of_args == 3) {
     return;
   } else {
-    printf("Usage: ./pagr <filename.filetype>\n");
+    printf("Usage: ./pagr <filename.filetype> [theme]\n");
     exit(0);
   }
 }
