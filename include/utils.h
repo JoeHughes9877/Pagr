@@ -1,6 +1,4 @@
 #include <ncurses.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 WINDOW *create_window();
 
