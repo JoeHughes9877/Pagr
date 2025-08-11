@@ -1,11 +1,12 @@
 #include "../include/plain_txt.h"
+#include "../include/utils.h"
 #include <ncurses.h>
 #include <panel.h>
 #include <stdlib.h>
 #include <string.h>
 
 bool usage_check(int argc);
-int file_format(char *file);
+char *file_format(char *file);
 
 const int arr_len = 16;
 
@@ -28,9 +29,8 @@ int main(int argc, char *argv[]) {
     exit(0);
   }
 
-  char *file_type;
-  if (file_format(argv[1]) == 1) {
-    file_type = argv[1];
+  char *file_type = file_format(argv[1]);
+  if (file_type != NULL) {
   } else {
     printf("Invalid file type.\n");
     exit(0);
@@ -52,12 +52,23 @@ bool usage_check(int num_of_args) {
   return true;
 }
 
-int file_format(char *file) {
+char *file_format(char *file) {
 
   for (int i = 0; i < arr_len; i++) {
     if (strstr(file, &acceptedFormats->file_name[i]) != NULL) {
-      return 1;
+      if (acceptedFormats[i].isArchive) {
+        unzip_file(file);
+
+        // just for epub files, this changes the file from .epub to .xml
+        char *ext = strstr(file, ".epub");
+        if (ext != NULL) {
+          strcpy(file, ".xml");
+          return file;
+        }
+      }
+
+      return &acceptedFormats->file_name[i];
     }
   }
-  return 0;
+  return NULL;
 }
