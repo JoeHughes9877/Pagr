@@ -5,6 +5,7 @@
 
 WINDOW *create_window() {
   initscr();
+  start_color();
   cbreak();
   noecho();
   keypad(stdscr, TRUE);
@@ -13,7 +14,7 @@ WINDOW *create_window() {
   getmaxyx(stdscr, y, x);
 
   WINDOW *mywin = newwin(y - 2, x - 16, 2, 10);
-
+  init_pair(1, COLOR_RED, COLOR_BLACK);
   return mywin;
 }
 
