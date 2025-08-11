@@ -9,7 +9,6 @@ bool usage_check(int argc);
 int file_format(char *file);
 
 const int arr_len = 16;
-
 const char *acceptedFormats[] = {"txt",  "md",  "csv", "log",  "json", "xml",
                                  "yaml", "yml", "ini", "conf", "cfg",  "rtf",
                                  "tex",  "asc", "bat", "sh",   "htm"};
@@ -31,11 +30,9 @@ int main(int argc, char *argv[]) {
 
   for (int i = 0; i < arr_len; i++) {
     if (strstr(file_to_open, acceptedFormats[i]) == 0) {
-      printf("file to open: %s", file_to_open);
       plain_txt_reading_loop(file_to_open);
     }
   }
-
   return 0;
 }
 
