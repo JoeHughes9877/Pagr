@@ -1,6 +1,6 @@
 #include <ncurses.h>
 
-WINDOW *create_window();
+WINDOW *create_window(char *theme);
 
 FILE *open_plain_txt_file(char *file_name);
 
