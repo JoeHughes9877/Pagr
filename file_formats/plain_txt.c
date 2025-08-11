@@ -33,7 +33,6 @@ void plain_txt_reading_loop(const char *file_name) {
     }
 
     mvwprintw(page, line_num + 1, 1, "Page Number: %d", current_page);
-
     wrefresh(page);
 
     if (feof(fp)) {
