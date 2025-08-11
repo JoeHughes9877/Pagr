@@ -8,6 +8,7 @@
 void usage_check(int argc);
 bool is_valid_extension(char *file);
 void open_file(char *file_to_open);
+char *theme = NULL;
 
 const char *acceptedFormats[] = {"txt",  "md",  "csv", "log",  "json", "xml",
                                  "yaml", "yml", "ini", "conf", "cfg",  "rtf",
@@ -16,7 +17,7 @@ static const size_t arr_len =
     sizeof(acceptedFormats) / sizeof(acceptedFormats[0]);
 
 void usage_check(int num_of_args) {
-  if (num_of_args == 3) {
+  if (num_of_args == 3 || num_of_args == 1) {
     return;
   } else {
     printf("Usage: ./pagr <filename.filetype> [theme]\n");
@@ -34,14 +35,16 @@ bool is_valid_extension(char *file) {
   exit(0);
 }
 
-void read_book(char *file_to_open) {
+void read_book(char *file_to_open, char *theme) {
   for (size_t i = 0; i < arr_len; i++) {
     if (strstr(file_to_open, acceptedFormats[i])) {
-      plain_txt_reading_loop(file_to_open);
+      plain_txt_reading_loop(file_to_open, theme);
       break;
     }
   }
 }
+
+void check_theme(char *usr_theme) { theme = usr_theme; }
 
 int main(int argc, char *argv[]) {
   usage_check(argc);
@@ -51,7 +54,9 @@ int main(int argc, char *argv[]) {
     file_to_open = argv[1];
   }
 
-  read_book(file_to_open);
+  check_theme(argv[2]);
+
+  read_book(file_to_open, theme);
 
   return 0;
 }
