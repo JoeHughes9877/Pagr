@@ -20,10 +20,11 @@ WINDOW *create_window() {
 
 FILE *open_plain_txt_file(char *file_name) {
   setlocale(LC_ALL, "");
+  printf("\nfile name: %s\n", file_name);
 
   FILE *fptr;
   if ((fptr = fopen(file_name, "r")) == NULL) {
-    printf("Error! opening file");
+    printf("Error! opening file\n");
     exit(1);
   }
 
@@ -36,4 +37,8 @@ void close_application(WINDOW *page, FILE *fp) {
   fclose(fp);
   endwin();
   exit(0);
+}
+
+void unzip_file() {
+  // TOOD
 }
