@@ -37,8 +37,6 @@ sudo make install
 |-----|-----------------------|
 | `n` | Next page             |
 | `b` | Previous page         |
-| `g` | Go to start of book   |
-| `G` | Go to end of book     |
 | `q` | Quit                  |
 
 
