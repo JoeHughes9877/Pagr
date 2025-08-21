@@ -13,9 +13,8 @@ I like reading ebooks, but sometimes the formatting on Kindle can get weird when
 
 - 📄 Supports plain text formats  
 - 🔖 Paginated reading with page numbers and progress tracking  
-- ⌨️ Keyboard navigation: next/previous page, jump to start/end, search  
+- ⌨️ Keyboard navigation: next/previous page.
 - 🎨 terminal themes (classic, dracula, gruvbox, nord and monkai)  
-- 💾 Save and restore last-read page automatically  
 - ⚡ Fast and lightweight — works in any terminal
 
 ---
